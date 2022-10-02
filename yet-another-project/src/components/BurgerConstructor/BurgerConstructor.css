@@ -55,4 +55,5 @@
   display: flex;
   align-self: center;
   gap: 8px;
+  align-items: baseline;
 }
