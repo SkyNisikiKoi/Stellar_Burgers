@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
-import AppHeader from './components/AppHeader/AppHeader.jsx';
+import AppHeader from '../AppHeader/AppHeader.jsx';
 import './App.css';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -26,4 +26,6 @@ function App() {
   );
 }
 
-export default App;
+
+
+

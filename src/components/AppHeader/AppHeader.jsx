@@ -1,6 +1,7 @@
 import React from 'react';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import './AppHeader.css';
+import { NavBar } from '../NavBar/NavBar.jsx';
 
 
 export default class AppHeader extends React.Component {
@@ -41,12 +42,3 @@ export default class AppHeader extends React.Component {
 }
 
 
-class NavBar extends React.Component {
-    render() {
-        return (
-            <nav className='nav'>
-                {this.props.children}
-            </nav>
-        );
-    }
-}

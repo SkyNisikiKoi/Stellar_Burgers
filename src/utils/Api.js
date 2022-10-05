@@ -1,4 +1,4 @@
-import { dataCards } from '../../utils/data.js';
+import { dataCards } from './data.js';
 
 export class Api {
     constructor(options) {
@@ -19,3 +19,13 @@ export class Api {
     };
 }
 
+export const api = new Api({
+    baseUrl: '',
+    headers: {
+        authorization: '',
+        'Content-Type': 'application/json'
+    }
+  });
+  
+
+  export const dataElements = api.loadCards();
