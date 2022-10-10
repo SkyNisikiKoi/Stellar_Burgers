@@ -1,31 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import ReactDOM from 'react-dom/client';
+import '../../index.css';
 import AppHeader from '../AppHeader/AppHeader.jsx';
-import './App.css';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx';
+import BurgerConstructor from '../BurgerConstructor/BurgerConstructor.jsx';
+import { dataElements } from '../../utils/Api.js';
 
-export function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header>
-    </div>
-  );
+function App() {
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+root.render(
+  <React.StrictMode>
+    <AppHeader />
+    <main style={{ display: 'grid', gridTemplateColumns: "600px 600px", gridColumnGap: "40px", justifyContent: "center", alignContent: "center" }}>
+
+      <BurgerIngredients />
+      <BurgerConstructor dataElements={dataElements} />
+
+    </main>
+  </React.StrictMode>
+);
 }
 
+export default App;
 
 
 
