@@ -1,11 +1,43 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import './BurgerIngredients.css';
 import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngredients.jsx';
 import { FillOutCards } from '../../components/FillOutCards/FillOutCards.jsx';
-import { bun, main, sauce } from '../../utils/constants.js';
+import { api } from '../../utils/Api.js';
 
-export default class BurgerIngredients extends React.Component {
-    render() {
+
+function BurgerIngredients() {
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [items, setItems] = useState({});
+
+
+    useEffect(() => {
+        api.loadCards()
+            .then(
+                (result) => {
+                    setIsLoaded(true);
+                    setItems({
+                        bun: result.data.filter(item => item.type === "bun"),
+                        main: result.data.filter(item => item.type === "main"),
+                        sauce: result.data.filter(item => item.type === "sauce"),
+
+                    }
+                    );
+                    console.log(result.data)
+                },
+
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    }, [])
+
+    if (error) {
+        return <div>Ошибка: {error.message}</div>;
+    } else if (!isLoaded) {
+        return <div>Загрузка...</div>;
+    } else {
         return (
 
             <section className="section-burgerm-menu">
@@ -23,7 +55,7 @@ export default class BurgerIngredients extends React.Component {
                             Булки
                         </p>
                         <div className="burgerm-menu-grid bun">
-                            <FillOutCards type={bun} />
+                            <FillOutCards type={items.bun}/>
 
                         </div>
 
@@ -31,14 +63,14 @@ export default class BurgerIngredients extends React.Component {
                             Соусы
                         </p>
                         <div className="burgerm-menu-grid">
-                            <FillOutCards type={main} />
+                            <FillOutCards type={items.main}/>
 
                         </div>
                         <p className="text text_type_main-medium position-section">
                             Начинки
                         </p>
                         <div className="burgerm-menu-grid">
-                            <FillOutCards type={sauce} />
+                            <FillOutCards  type={items.sauce}/>
 
                         </div>
                     </div>
@@ -48,3 +80,5 @@ export default class BurgerIngredients extends React.Component {
         );
     }
 }
+
+export default BurgerIngredients;

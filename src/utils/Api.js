@@ -1,9 +1,10 @@
-import { dataCards } from './data.js';
+export const url = 'https://norma.nomoreparties.space/api/ingredients';
 
 export class Api {
-    constructor(options) {
-        // this.baseUrl = options.baseUrl,
-        //     this.headers = options.headers
+    constructor(props) {
+        this.baseUrl = props.baseUrl;
+        this.headers = props.headers
+       
     }
 
     checkResponse(res) {
@@ -14,13 +15,18 @@ export class Api {
     };
 
     loadCards() {
-        return dataCards
+        return fetch(this.baseUrl, {
+            method: 'GET',
+            headers: this.headers
+        })
+            .then(this.checkResponse)
       
     };
+
 }
 
 export const api = new Api({
-    baseUrl: '',
+    baseUrl: url,
     headers: {
         authorization: '',
         'Content-Type': 'application/json'
@@ -28,4 +34,4 @@ export const api = new Api({
   });
   
 
-  export const dataElements = api.loadCards();
+  //export const dataElements = api.loadCards();

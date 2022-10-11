@@ -14,10 +14,8 @@ root.render(
   <React.StrictMode>
     <AppHeader />
     <main style={{ display: 'grid', gridTemplateColumns: "600px 600px", gridColumnGap: "40px", justifyContent: "center", alignContent: "center" }}>
-
       <BurgerIngredients />
-      <BurgerConstructor dataElements={dataElements} />
-
+      <BurgerConstructor />
     </main>
   </React.StrictMode>
 );
