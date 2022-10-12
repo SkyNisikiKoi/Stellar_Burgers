@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export function Card(props) {
+export function Card({item, setModalActive}) {
 
     return (
-        <div className="card">
+        <div className="card" onClick={() => setModalActive(true)} >
             <Counter className="counter-card" count={1} size="default" />
 
-            <img className="card-img" src={props.image} alt={props.name}></img>
+            <img className="card-img" src={item.image} alt={item.name}></img>
             <p className="text text_type_main-default position-text">
-                {props.price} <CurrencyIcon type="primary" />
+                {item.price} <CurrencyIcon type="primary" />
             </p>
             <p className="text text_type_main-default position-text">
-                {props.name}
+                {item.name}
             </p>
         </div>
     )

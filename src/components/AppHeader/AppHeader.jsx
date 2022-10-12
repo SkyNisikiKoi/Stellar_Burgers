@@ -1,4 +1,3 @@
-import React from 'react';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import './AppHeader.css';
 import { NavBar } from '../NavBar/NavBar.jsx';

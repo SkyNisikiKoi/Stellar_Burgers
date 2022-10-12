@@ -33,5 +33,3 @@ export const api = new Api({
     }
   });
   
-
-  //export const dataElements = api.loadCards();

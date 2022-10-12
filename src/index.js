@@ -1,16 +1,15 @@
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App/App.jsx';
+import React from "react";
+import ReactDOM from 'react-dom/client';
+import "./index.css";
+import App from "../src/components/App/App.jsx";
 
 
-// function forIndex() {
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+    <div id="react-modals"></div>
+    <div id="app-root"></div>
+  </React.StrictMode>
+);
 
-//   return (
-//     { App }
-//   );
-
-// }
-
-// forIndex();
-
-ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,36 +1,38 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import './BurgerConstructor.css';
 import { ListItemTop } from '../ListItemTop/ListItemTop.jsx';
 import { ListItemBottom } from '../ListItemBottom/ListItemBottom.jsx';
 import { ListItemElement } from '../ListItemElement/ListItemElement.jsx';
 import { api } from '../../utils/Api.js';
+import {dataCards as result} from '../../utils/data.js'
 
-function BurgerConstructor() {
+function BurgerConstructor(props) {
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState({});
-
+  
 
     useEffect(() => {
-        api.loadCards()
-          .then(
-            (result) => {
+        // api.loadCards()
+        //   .then(
+        //     (result) => {
               setIsLoaded(true);
               setItems({
-                useBun: result.data.filter(item => item.type === "bun")[0],
-                ingredients: result.data.filter(item => item.type !== "bun")
+                // useBun: result.data.filter(item => item.type === "bun")[0],
+                // ingredients: result.data.filter(item => item.type !== "bun")
+                useBun: result.filter(item => item.type === "bun")[0],
+                ingredients: result.filter(item => item.type !== "bun")
               }
                 );
-              console.log(result.data)
-            },
+        //     },
             
-            (error) => {
-              setIsLoaded(true);
-              setError(error);
-            }
-          )
+        //     (error) => {
+        //       setIsLoaded(true);
+        //       setError(error);
+        //     }
+        //   )
       }, [])
 
     function costСalculation() {
@@ -64,7 +66,8 @@ function BurgerConstructor() {
                 <p className="text text_type_digits-medium position-button-cost">
                     {costСalculation()} <CurrencyIcon type="primary" />
                 </p>
-                <Button type="primary" size="medium">
+                <Button type="primary" size="medium" onClick={() => props.setModalActive(true) } >
+                
                     Оформить заказ
                 </Button>
             </div>
