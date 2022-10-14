@@ -8,7 +8,7 @@ import { api } from '../../utils/Api.js';
 import Modal from '../Modal/Modal.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
 
-function BurgerConstructor() {
+function BurgerConstructor({items}) {
 
     
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
@@ -23,7 +23,7 @@ function BurgerConstructor() {
 
     
 
-    function costСalculation(items) {
+    function costСalculation() {
         let cost = items.useBun.price;
 
         let costs = items.ingredients.reduce((previousValue, currentValue) => {
@@ -33,12 +33,6 @@ function BurgerConstructor() {
         return cost + costs;
     };
 
-
-    // if (error) {
-    //     return <div>Ошибка: {error.message}</div>;
-    // } else if (!isLoaded) {
-    //     return <div>Загрузка...</div>;
-    // } else {
         return (
 
 
@@ -73,9 +67,5 @@ function BurgerConstructor() {
 
         );
     }
-
-// }
-
-
 
 export default BurgerConstructor;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../index.css';
 import AppHeader from '../AppHeader/AppHeader.jsx';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx';
@@ -11,14 +11,18 @@ export const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState({});
 
-  seEffect(() => {
+  useEffect(() => {
     api.loadCards()
       .then(
         (result) => {
           setIsLoaded(true);
           setItems({
+            bun: result.data.filter(item => item.type === "bun"),
+            main: result.data.filter(item => item.type === "main"),
+            sauce: result.data.filter(item => item.type === "sauce"),
             useBun: result.data.filter(item => item.type === "bun")[0],
-            ingredients: result.data.filter(item => item.type !== "bun")
+            ingredients: result.data.filter(item => item.type !== "bun"),
+            all: result.data
           }
           );
         },

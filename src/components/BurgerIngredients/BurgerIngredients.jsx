@@ -7,10 +7,7 @@ import Modal from '../Modal/Modal.jsx'
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
 
 
-function BurgerIngredients(items) {
-    // const [error, setError] = useState(null);
-    // const [isLoaded, setIsLoaded] = useState(false);
-    // const [items, setItems] = useState({});
+function BurgerIngredients({items}) {
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
     const [id, setId] = useState(null);
     const [currentType, setCurrent] = useState('Булки');
@@ -24,7 +21,8 @@ function BurgerIngredients(items) {
         e.key === "Escape" && closeAllModals();
     };
 
-    function getCurrentType() {
+    function getCurrentType(items) {
+        console.log(items)
         if (currentType === 'Булки') {
             return items.bun
         } else if  (currentType === 'Соусы') {
@@ -34,36 +32,6 @@ function BurgerIngredients(items) {
         }
     }
 
-    // useEffect(() => {
-    //     api.loadCards()
-    //         .then(
-    //             (result) => {
-    //                 setIsLoaded(true);
-    //                 setItems({
-    //                     bun: result.data.filter(item => item.type === "bun"),
-    //                     main: result.data.filter(item => item.type === "main"),
-    //                     sauce: result.data.filter(item => item.type === "sauce"),
-    //                     all: result.data
-    //                 }
-    //                 );
-    //             },
-
-    //             (error) => {
-    //                 setIsLoaded(true);
-    //                 setError(error);
-    //             }
-    //         )
-
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, [])
-
-    if (error) {
-        return <div>Ошибка: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Загрузка...</div>;
-    } else {
         return (
 
             <section className="section-burgerm-menu">
@@ -86,13 +54,13 @@ function BurgerIngredients(items) {
                     setCurrent={setCurrent} 
                     setIsIngredientDetailsOpened={setIsIngredientDetailsOpened} 
                     setId={setId} 
-                    type={getCurrentType()} />
+                    type={getCurrentType(items)} />
                         </div>
                    
             </section>
 
         );
     }
-}
+
 
 export default BurgerIngredients;
