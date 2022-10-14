@@ -1,6 +1,7 @@
 .scroll-container-menu {
     max-height: 734px;
-    overflow-y: scroll;       
+    overflow-y: scroll;  
+    overflow: auto;
 }
 
 .scroll-container-menu::-webkit-scrollbar {
@@ -27,7 +28,7 @@
   .scroll-container-menu::-webkit-scrollbar-thumb:active{
     background: linear-gradient(left, #22ADD4, #1E98BA);
   }
-  
+
   .position-section {
     margin-bottom: 20px;
 }

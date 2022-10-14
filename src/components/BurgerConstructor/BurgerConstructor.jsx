@@ -4,9 +4,9 @@ import './BurgerConstructor.css';
 import { ListItemTop } from '../ListItemTop/ListItemTop.jsx';
 import { ListItemBottom } from '../ListItemBottom/ListItemBottom.jsx';
 import { ListItemElement } from '../ListItemElement/ListItemElement.jsx';
-import { api } from '../../utils/Api.js';
 import Modal from '../Modal/Modal.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
+import PropTypes from 'prop-types';
 
 function BurgerConstructor({items}) {
 
@@ -67,5 +67,9 @@ function BurgerConstructor({items}) {
 
         );
     }
+
+    BurgerConstructor.propTypes = {
+        items: PropTypes.array.isRequired
+    };
 
 export default BurgerConstructor;

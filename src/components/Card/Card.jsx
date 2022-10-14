@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
+import './Card.css';
 
 export function Card({ item, setIsIngredientDetailsOpened, setId }) {
 
@@ -7,7 +8,6 @@ export function Card({ item, setIsIngredientDetailsOpened, setId }) {
         setId(item._id);
         setIsIngredientDetailsOpened(true)
     }
-
 
     return (
         <div className="card" onClick={() => openCard()} >
