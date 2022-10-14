@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export function Card({item, setModalActive}) {
+export function Card({ item, setIsIngredientDetailsOpened, setId }) {
+
+    function openCard() {
+        setId(item._id);
+        setIsIngredientDetailsOpened(true)
+    }
+
 
     return (
-        <div className="card" onClick={() => setModalActive(true)} >
+        <div className="card" onClick={() => openCard()} >
             <Counter className="counter-card" count={1} size="default" />
 
             <img className="card-img" src={item.image} alt={item.name}></img>
@@ -19,7 +25,12 @@ export function Card({item, setModalActive}) {
 }
 
 Card.propTypes = {
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
+    item: PropTypes.shape({
+        image: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        _id: PropTypes.string.isRequired
+      }),
+    setIsIngredientDetailsOpened: PropTypes.func.isRequired,
+    setId: PropTypes.string.isRequired
 };

@@ -1,4 +1,5 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from 'prop-types';
 
 export function ListItemBottom(props) {
     return (
@@ -13,3 +14,9 @@ export function ListItemBottom(props) {
         </div>
     )
 }
+
+ListItemBottom.propTypes = {
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired
+};

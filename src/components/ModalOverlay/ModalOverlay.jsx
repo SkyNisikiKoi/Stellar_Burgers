@@ -1,26 +1,17 @@
 
 import './ModalOverlay.css';
-import Modal  from '../Modal/Modal.jsx';
+import PropTypes from 'prop-types';
 
 
-const ModalOverlay = ({active, setActive}) => {
-
-    function handleKeyPress(e) {
-        console.log(e)
-        if (e.key === 'Escape') {
-            setActive(false);
-        }}
+const ModalOverlay = ({ onClick }) => {
 
     return (
-        <div className={active ? 'modal active' : 'modal'} onClick={() => setActive(false)} onKeyDown={(e) => handleKeyPress(e)}>
-            <div>
-            <Modal setActive={setActive}/>
-            </div>
+        <div className={'modal'} onClick={onClick} />
+    );
+};
 
-        </div>
-    )
-}
-
-
+ModalOverlay.propTypes = {
+    onClick: PropTypes.func.isRequired
+};
 
 export default ModalOverlay;

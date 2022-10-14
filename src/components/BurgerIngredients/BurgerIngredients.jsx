@@ -3,38 +3,61 @@ import './BurgerIngredients.css';
 import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngredients.jsx';
 import { FillOutCards } from '../../components/FillOutCards/FillOutCards.jsx';
 import { api } from '../../utils/Api.js';
-import {dataCards as result} from '../../utils/data.js'
+import Modal from '../Modal/Modal.jsx'
+import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
 
 
-function BurgerIngredients(props) {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState({});
+function BurgerIngredients(items) {
+    // const [error, setError] = useState(null);
+    // const [isLoaded, setIsLoaded] = useState(false);
+    // const [items, setItems] = useState({});
+    const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
+    const [id, setId] = useState(null);
+    const [currentType, setCurrent] = useState('Булки');
 
-    useEffect(() => {
-        // api.loadCards()
-        //     .then(
-        //         (result) => {
-                    setIsLoaded(true);
-                    setItems({
-                        // bun: result.data.filter(item => item.type === "bun"),
-                        // main: result.data.filter(item => item.type === "main"),
-                        // sauce: result.data.filter(item => item.type === "sauce"),
-                        bun: result.filter(item => item.type === "bun"),
-                        main: result.filter(item => item.type === "main"),
-                        sauce: result.filter(item => item.type === "sauce"),
+    const closeAllModals = () => {
+        setIsIngredientDetailsOpened(false);
 
+    };
 
-                    }
-                    );
-                // },
+    const handleEscKeydown = (e) => {
+        e.key === "Escape" && closeAllModals();
+    };
 
-                // (error) => {
-                //     setIsLoaded(true);
-                //     setError(error);
-                // }
-            // )
-    }, [])
+    function getCurrentType() {
+        if (currentType === 'Булки') {
+            return items.bun
+        } else if  (currentType === 'Соусы') {
+            return items.sauce
+        } else if  (currentType === 'Начинки') {
+            return items.main
+        }
+    }
+
+    // useEffect(() => {
+    //     api.loadCards()
+    //         .then(
+    //             (result) => {
+    //                 setIsLoaded(true);
+    //                 setItems({
+    //                     bun: result.data.filter(item => item.type === "bun"),
+    //                     main: result.data.filter(item => item.type === "main"),
+    //                     sauce: result.data.filter(item => item.type === "sauce"),
+    //                     all: result.data
+    //                 }
+    //                 );
+    //             },
+
+    //             (error) => {
+    //                 setIsLoaded(true);
+    //                 setError(error);
+    //             }
+    //         )
+
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [])
 
     if (error) {
         return <div>Ошибка: {error.message}</div>;
@@ -44,40 +67,28 @@ function BurgerIngredients(props) {
         return (
 
             <section className="section-burgerm-menu">
+
+                {isIngredientDetailsOpened &&
+                    <Modal
+                        onOverlayClick={closeAllModals}
+                        onEscKeydown={handleEscKeydown}
+                    >
+                        <IngredientDetails item={items.all.find(x => x._id == id)} />
+                    </Modal>}
+
                 <div className="burgerm-menu">
 
                     <p className="text text_type_main-medium position-title">
                         Соберите бургер
                     </p>
 
-                    <ChoiceIngredients />
-
-                    <div className="scroll-container-menu">
-
-                        <p className="text text_type_main-medium position-section">
-                            Булки
-                        </p>
-                        <div className="burgerm-menu-grid bun">
-                            <FillOutCards type={items.bun} setModalActive={props.setModalActive}/>
-
+                    <ChoiceIngredients currentType={currentType} 
+                    setCurrent={setCurrent} 
+                    setIsIngredientDetailsOpened={setIsIngredientDetailsOpened} 
+                    setId={setId} 
+                    type={getCurrentType()} />
                         </div>
-
-                        <p className="text text_type_main-medium position-section">
-                            Соусы
-                        </p>
-                        <div className="burgerm-menu-grid">
-                            <FillOutCards type={items.main} />
-
-                        </div>
-                        <p className="text text_type_main-medium position-section">
-                            Начинки
-                        </p>
-                        <div className="burgerm-menu-grid">
-                            <FillOutCards  type={items.sauce} />
-
-                        </div>
-                    </div>
-                </div>
+                   
             </section>
 
         );
