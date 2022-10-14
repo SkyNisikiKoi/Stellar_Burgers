@@ -1,0 +1,48 @@
+.section-burgerm-menu {
+  max-width: 1200px;
+}
+
+.burgerm-menu {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.burgerm-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 0 24px;
+  margin-bottom: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  position: relative;
+  margin-right: 8px;
+}
+
+.position-text {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.card-img {
+    width: 240px;
+    height: 120px;
+    align-self: center; 
+    margin-bottom: 8px;
+}
+
+.position-title {
+    margin-bottom: 40px;
+}
+
+
+
+
