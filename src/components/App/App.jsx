@@ -4,19 +4,20 @@ import AppHeader from '../AppHeader/AppHeader.jsx';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor.jsx';
 import { api } from '../../utils/Api.js';
+import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 
 
 export const App = () => {
+  const [ingredients, setIngredients] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState({});
-
+ 
   useEffect(() => {
     api.loadCards()
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems({
+          setIngredients({
             bun: result.data.filter(item => item.type === "bun"),
             main: result.data.filter(item => item.type === "main"),
             sauce: result.data.filter(item => item.type === "sauce"),
@@ -48,9 +49,12 @@ export const App = () => {
       <React.StrictMode>
         <AppHeader />
         <main style={{ display: 'grid', gridTemplateColumns: "600px 600px", gridColumnGap: "40px", justifyContent: "center", alignContent: "center" }}>
-          <BurgerIngredients items={items} />
-          <BurgerConstructor items={items} />
+          <BurgerIngredientsContext.Provider value={ingredients}>
 
+            <BurgerIngredients />
+            <BurgerConstructor  />
+            
+          </BurgerIngredientsContext.Provider>
         </main>
       </React.StrictMode>
     );
@@ -60,4 +64,3 @@ export const App = () => {
 
 
 
-  

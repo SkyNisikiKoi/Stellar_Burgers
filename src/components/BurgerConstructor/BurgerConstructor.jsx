@@ -6,12 +6,27 @@ import { ListItemBottom } from '../ListItemBottom/ListItemBottom.jsx';
 import { ListItemElement } from '../ListItemElement/ListItemElement.jsx';
 import Modal from '../Modal/Modal.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
-import PropTypes from 'prop-types';
+import { useContext } from "react";
+import BurgerIngredientsContext from "../../context/burger-ingredients-context.js";
+import {api} from "../../utils/Api.js";
 
-function BurgerConstructor({items}) {
+function BurgerConstructor() {
 
-    
+    const ingredients = useContext(BurgerIngredientsContext);
+    const [modalData, setModalData] = useState(null);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
+
+    const handleOrderClick = () => {
+        api.saveOrder(ingredients)
+          .then(data => {
+            setModalData(data); // полученный ответ помещаем в стейт для модалки
+            // в ответе номер заказа лежит в data.order.number
+            setIsOrderDetailsOpened(true);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
     const closeAllModals = () => {
         setIsOrderDetailsOpened(false);
@@ -24,13 +39,13 @@ function BurgerConstructor({items}) {
     
 
     function costСalculation() {
-        let cost = items.useBun.price;
+        let cost = ingredients.useBun.price;
 
-        let costs = items.ingredients.reduce((previousValue, currentValue) => {
+        let costs = ingredients.ingredients.reduce((previousValue, currentValue) => {
             return previousValue + currentValue.price
         }, 0)
 
-        return cost + costs;
+        return cost*2 + costs;
     };
 
         return (
@@ -43,23 +58,23 @@ function BurgerConstructor({items}) {
                         onOverlayClick={closeAllModals}
                         onEscKeydown={handleEscKeydown}
                     >
-                        <OrderDetails />
+                        <OrderDetails modalData={modalData}/>
                     </Modal>}
 
                 <div className="burger-ingredients-order">
-                    {ListItemTop(items.useBun)}
+                    {ListItemTop(ingredients.useBun)}
                     <div className="scroll-container">
-                        {items.ingredients.map(item => ListItemElement(item))}
+                        {ingredients.ingredients.map(item => ListItemElement(item))}
                     </div>
-                    {ListItemBottom(items.useBun)}
+                    {ListItemBottom(ingredients.useBun)}
                 </div>
                 <div className="cost-container">
 
                     <p className="text text_type_digits-medium position-button-cost">
                         {costСalculation()} <CurrencyIcon type="primary" />
                     </p>
-                    <Button type="primary" size="medium" onClick={() => setIsOrderDetailsOpened(true)}>
-
+                    <Button type="primary" size="medium" onClick={handleOrderClick}>
+        
                         Оформить заказ
                     </Button>
                 </div>
@@ -67,9 +82,5 @@ function BurgerConstructor({items}) {
 
         );
     }
-
-    BurgerConstructor.propTypes = {
-        items: PropTypes.array.isRequired
-    };
 
 export default BurgerConstructor;

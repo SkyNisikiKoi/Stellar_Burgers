@@ -3,9 +3,11 @@ import './BurgerIngredients.css';
 import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngredients.jsx';
 import Modal from '../Modal/Modal.jsx'
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
-import PropTypes from 'prop-types';
+import { useContext } from "react";
+import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 
-function BurgerIngredients({ items }) {
+function BurgerIngredients() {
+    const ingredients = useContext(BurgerIngredientsContext);
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
     const [id, setId] = useState(null);
     const [currentType, setCurrent] = useState('Булки');
@@ -19,13 +21,13 @@ function BurgerIngredients({ items }) {
         e.key === "Escape" && closeAllModals();
     };
 
-    function getCurrentType(items) {
+    function getCurrentType(ingredients) {
         if (currentType === 'Булки') {
-            return items.bun
+            return ingredients.bun
         } else if (currentType === 'Соусы') {
-            return items.sauce
+            return ingredients.sauce
         } else if (currentType === 'Начинки') {
-            return items.main
+            return ingredients.main
         }
     }
 
@@ -38,7 +40,7 @@ function BurgerIngredients({ items }) {
                     onOverlayClick={closeAllModals}
                     onEscKeydown={handleEscKeydown}
                 >
-                    <IngredientDetails item={items.all.find(x => x._id == id)} />
+                    <IngredientDetails item={ingredients.all.find(x => x._id == id)} />
                 </Modal>}
 
             <div className="burgerm-menu">
@@ -51,7 +53,7 @@ function BurgerIngredients({ items }) {
                     setCurrent={setCurrent}
                     setIsIngredientDetailsOpened={setIsIngredientDetailsOpened}
                     setId={setId}
-                    type={getCurrentType(items)} />
+                    type={getCurrentType(ingredients)} />
             </div>
 
         </section>
@@ -59,8 +61,5 @@ function BurgerIngredients({ items }) {
     );
 }
 
-BurgerIngredients.propTypes = {
-    items: PropTypes.array.isRequired
-};
 
 export default BurgerIngredients;

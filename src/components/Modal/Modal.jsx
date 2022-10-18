@@ -39,7 +39,7 @@ const Modal = ({ onOverlayClick, onEscKeydown, children }) => {
 Modal.propTypes = {
     onOverlayClick: PropTypes.func.isRequired,
     onEscKeydown: PropTypes.func.isRequired,
-    children: PropTypes.array.isRequired
+    children: PropTypes.object.isRequired
 };
 
 export default Modal;

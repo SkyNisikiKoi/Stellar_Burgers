@@ -1,4 +1,4 @@
-export const url = 'https://norma.nomoreparties.space/api/ingredients';
+export const url = 'https://norma.nomoreparties.space/api/';
 
 export class Api {
     constructor(props) {
@@ -15,9 +15,22 @@ export class Api {
     };
 
     loadCards() {
-        return fetch(this.baseUrl, {
+        return fetch(`${this.baseUrl}ingredients`, {
             method: 'GET',
-            headers: this.headers
+            headers: this.headers,
+        })
+            .then(this.checkResponse)
+      
+    };
+
+   
+    saveOrder(ingredients) {
+        return fetch(`${this.baseUrl}orders`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                ingredients: ingredients.all.map(ingredient => ingredient._id)
+            })
         })
             .then(this.checkResponse)
       

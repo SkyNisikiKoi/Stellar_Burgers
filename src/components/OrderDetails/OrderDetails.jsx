@@ -1,16 +1,17 @@
 import './OrderDetails.css';
 import done from "../../images/done.svg"
+import PropTypes from 'prop-types';
 
 
-function OrderDetails() {
+function OrderDetails({modalData}) {
 
     return (
         <div className="order-details">
-            <p className="text text_type_digits-large order-details-number">123456</p>
+            <p className="text text_type_digits-large order-details-number">{modalData.order.number}</p>
             <p className="text text_type_main-default order-details-identifier">
                 идентификатор заказа
             </p>
-            <img class="order-details-image" src={done} alt="" />
+            <img className="order-details-image" src={done} alt="" />
             <p className="text text_type_main-small order-details-start">
                 Ваш заказ начали готовить
             </p>
@@ -22,5 +23,13 @@ function OrderDetails() {
 
     )
 }
+
+OrderDetails.propTypes = {
+    modalData: PropTypes.shape({
+        order: PropTypes.shape({
+            number: PropTypes.number.isRequired
+        }),
+      }),
+};
 
 export default OrderDetails;
