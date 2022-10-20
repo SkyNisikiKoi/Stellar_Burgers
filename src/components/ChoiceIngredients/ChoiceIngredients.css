@@ -32,3 +32,8 @@
   .position-section {
     margin-bottom: 20px;
 }
+
+.styleTab {
+  display: flex;
+  margin-bottom: 40px;
+}

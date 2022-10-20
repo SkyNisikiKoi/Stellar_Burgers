@@ -28,12 +28,12 @@ function BurgerConstructor() {
           });
       };
 
-    const closeAllModals = () => {
+    const onClose = () => {
         setIsOrderDetailsOpened(false);
     };
 
     const handleEscKeydown = (e) => {
-        e.key === "Escape" && closeAllModals();
+        e.key === "Escape" && onClose();
     };
 
     
@@ -55,7 +55,7 @@ function BurgerConstructor() {
 
                 {isOrderDetailsOpened &&
                     <Modal
-                        onOverlayClick={closeAllModals}
+                        onOverlayClick={onClose}
                         onEscKeydown={handleEscKeydown}
                     >
                         <OrderDetails modalData={modalData}/>

@@ -5,7 +5,7 @@ import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor.jsx';
 import { api } from '../../utils/Api.js';
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
-
+import { Main } from '../Main/Main.jsx';
 
 export const App = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -48,14 +48,14 @@ export const App = () => {
     return (
       <React.StrictMode>
         <AppHeader />
-        <main style={{ display: 'grid', gridTemplateColumns: "600px 600px", gridColumnGap: "40px", justifyContent: "center", alignContent: "center" }}>
+        <Main>
           <BurgerIngredientsContext.Provider value={ingredients}>
 
             <BurgerIngredients />
             <BurgerConstructor  />
-            
+
           </BurgerIngredientsContext.Provider>
-        </main>
+        </Main>
       </React.StrictMode>
     );
   }

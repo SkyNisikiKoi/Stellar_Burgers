@@ -8,7 +8,7 @@ export function ChoiceIngredients({ currentType, setCurrent, setIsIngredientDeta
 
     return (
         <>
-            <div style={{ display: 'flex', marginBottom: "40px" }}>
+            <div className='styleTab'>
                 <Tab value="Булки" active={currentType === 'Булки'} onClick={setCurrent}>
                     Булки
                 </Tab>

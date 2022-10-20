@@ -1,9 +1,9 @@
-import { React, useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './Modal.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 const modalsContainer = document.querySelector('#modals');
 
@@ -21,13 +21,9 @@ const Modal = ({ onOverlayClick, onEscKeydown, children }) => {
     return ReactDOM.createPortal(
         <>
             <div className='modal-content'>
-                <button
-                    type="button"
-                    arialabel="закрыть форму"
-                    className="modal-button-exit"
-                    onClick={onOverlayClick}
-
-                ></button>
+                <div className="modal-button-exit">
+                    <CloseIcon onClick={onOverlayClick} />
+                </div>
                 {children}
             </div>
             <ModalOverlay onClick={onOverlayClick} />

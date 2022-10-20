@@ -24,7 +24,6 @@
   border: none;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url(../../images/icon.svg);
   width: 24px;
   height: 24px;
   transform: rotate(180deg);

@@ -12,13 +12,13 @@ function BurgerIngredients() {
     const [id, setId] = useState(null);
     const [currentType, setCurrent] = useState('Булки');
 
-    const closeAllModals = () => {
+    const onClose = () => {
         setIsIngredientDetailsOpened(false);
 
     };
 
     const handleEscKeydown = (e) => {
-        e.key === "Escape" && closeAllModals();
+        e.key === "Escape" && onClose();
     };
 
     function getCurrentType(ingredients) {
@@ -37,7 +37,7 @@ function BurgerIngredients() {
 
             {isIngredientDetailsOpened &&
                 <Modal
-                    onOverlayClick={closeAllModals}
+                    onOverlayClick={onClose}
                     onEscKeydown={handleEscKeydown}
                 >
                     <IngredientDetails item={ingredients.all.find(x => x._id == id)} />

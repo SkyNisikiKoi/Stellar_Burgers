@@ -1,9 +1,10 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
+import './ListItemElement.css';
 
 export function ListItemElement(props) {
     return (
-        <div style={{ display: 'flex', flexDirection: '', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+        <div className='styleListItemElement'>
 
             <DragIcon type="primary" />
             <ConstructorElement

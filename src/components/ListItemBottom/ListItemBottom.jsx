@@ -1,9 +1,10 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
+import './ListItemBottom.css';
 
 export function ListItemBottom(props) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignSelf: 'center', gap: '10px' }}>
+        <div className='styleListItemBottom'>
             <ConstructorElement
                 type="bottom"
                 isLocked={true}

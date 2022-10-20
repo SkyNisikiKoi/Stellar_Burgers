@@ -18,7 +18,7 @@ function AppHeader() {
 
 
                         <Button extraClass='color position-button button-hover' type="secondary" size="medium" onClick="(() => void)">
-                            <ListIcon style={{ opacity: '0.9' }} type="secondary" />  Лента заказов
+                            <ListIcon type="secondary" />  Лента заказов
                         </Button>
                     </div>
                 </NavBar>

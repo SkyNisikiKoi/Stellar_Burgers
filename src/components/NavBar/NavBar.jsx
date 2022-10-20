@@ -1,11 +1,8 @@
-import React from 'react';
+export function NavBar(props) {
 
-export class NavBar extends React.Component {
-    render() {
-        return (
-            <nav className='nav'>
-                {this.props.children}
-            </nav>
-        );
-    }
+    return (
+        <nav className='nav'>
+            {props.children}
+        </nav>
+    );
 }
