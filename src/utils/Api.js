@@ -14,25 +14,29 @@ export class Api {
         return Promise.reject(`Ошибка ${res.status}`);
     };
 
+    _request(url, options) {
+        return fetch(url, options).then(this.checkResponse)
+      }
+
+   
+
     loadCards() {
-        return fetch(`${this.baseUrl}ingredients`, {
+        return this._request(`${this.baseUrl}ingredients`, {
             method: 'GET',
             headers: this.headers,
         })
-            .then(this.checkResponse)
       
     };
 
    
     saveOrder(ingredients) {
-        return fetch(`${this.baseUrl}orders`, {
+        return this._request(`${this.baseUrl}orders`, {
             method: 'POST',
             headers: this.headers,
             body: JSON.stringify({
                 ingredients: ingredients.all.map(ingredient => ingredient._id)
             })
         })
-            .then(this.checkResponse)
       
     };
 
