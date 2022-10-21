@@ -1,10 +1,10 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types';
 import './ListItemElement.css';
+import { ingredientType } from '../../utils/types.js';
 
 export function ListItemElement(props) {
     return (
-        <div className='styleListItemElement'>
+        <div className='styleListItemElement' key={props._id}>
 
             <DragIcon type="primary" />
             <ConstructorElement
@@ -18,7 +18,5 @@ export function ListItemElement(props) {
 }
 
 ListItemElement.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired
+    props: ingredientType.isRequired
 };

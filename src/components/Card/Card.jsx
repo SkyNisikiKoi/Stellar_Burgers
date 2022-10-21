@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import './Card.css';
+import { ingredientType } from '../../utils/types.js';
 
 export function Card({ item, setIsIngredientDetailsOpened, setId }) {
 
@@ -10,7 +11,7 @@ export function Card({ item, setIsIngredientDetailsOpened, setId }) {
     }
 
     return (
-        <div className="card" onClick={() => openCard()} >
+        <div className="card" onClick={() => openCard()} key={item._id}>
             <Counter className="counter-card" count={1} size="default" />
 
             <img className="card-img" src={item.image} alt={item.name}></img>
@@ -25,12 +26,7 @@ export function Card({ item, setIsIngredientDetailsOpened, setId }) {
 }
 
 Card.propTypes = {
-    item: PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        _id: PropTypes.string.isRequired
-      }),
+    item: ingredientType.isRequired,
     setIsIngredientDetailsOpened: PropTypes.func.isRequired,
     setId: PropTypes.string.isRequired
 };

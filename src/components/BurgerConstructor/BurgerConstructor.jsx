@@ -19,8 +19,7 @@ function BurgerConstructor() {
     const handleOrderClick = () => {
         api.saveOrder(ingredients)
           .then(data => {
-            setModalData(data); // полученный ответ помещаем в стейт для модалки
-            // в ответе номер заказа лежит в data.order.number
+            setModalData(data);
             setIsOrderDetailsOpened(true);
           })
           .catch((err) => {
@@ -73,7 +72,7 @@ function BurgerConstructor() {
                     <p className="text text_type_digits-medium position-button-cost">
                         {costСalculation()} <CurrencyIcon type="primary" />
                     </p>
-                    <Button type="primary" size="medium" onClick={handleOrderClick}>
+                    <Button type="primary" size="medium" onClick={handleOrderClick} htmlType='button'>
         
                         Оформить заказ
                     </Button>

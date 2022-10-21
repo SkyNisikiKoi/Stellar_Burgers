@@ -12,12 +12,12 @@ function AppHeader() {
                 <NavBar className='navbar'>
                     <div className='horizontal-menu'>
 
-                        <Button extraClass='color position-button button-hover' type="secondary" size="medium" onClick="(() => void)">
+                        <Button extraClass='color position-button button-hover' type="secondary" size="medium" htmlType='button'>
                             <span ><BurgerIcon type="secondary" /></span> Конструктор
                         </Button>
 
 
-                        <Button extraClass='color position-button button-hover' type="secondary" size="medium" onClick="(() => void)">
+                        <Button extraClass='color position-button button-hover' type="secondary" size="medium" htmlType='button'>
                             <ListIcon type="secondary" />  Лента заказов
                         </Button>
                     </div>
@@ -27,7 +27,7 @@ function AppHeader() {
                     <Logo />
                 </div>
 
-                <Button extraClass='color position-button button-hover position-back' type="secondary" size="medium" onClick="(() => void)">
+                <Button extraClass='color position-button button-hover position-back' type="secondary" size="medium" htmlType='button'>
                     <ProfileIcon type="secondary" />  Личный кабинет
                 </Button>
 

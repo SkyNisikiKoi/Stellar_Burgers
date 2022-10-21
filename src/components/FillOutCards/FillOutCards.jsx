@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export function FillOutCards({ type, setIsIngredientDetailsOpened, setId }) {
 
     let newCards = type.map(item => Card({ item, setIsIngredientDetailsOpened, setId }))//<Card image={item.image} name={item.name} price={item.price}/>)
-
     return newCards;
 };
 
