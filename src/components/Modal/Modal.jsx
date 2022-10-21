@@ -7,13 +7,19 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 const modalsContainer = document.querySelector('#modals');
 
-const Modal = ({ onOverlayClick, onEscKeydown, children }) => {
+const Modal = ({ onOverlayClick, children }) => {
 
     useEffect(() => {
-        document.addEventListener('keydown', onEscKeydown);
+
+        const handleEscKeydown = (e) => {
+            e.key === "Escape" && onOverlayClick();
+        };
+
+        document.addEventListener('keydown', handleEscKeydown);
+
 
         return () => {
-            document.removeEventListener('keydown', onEscKeydown);
+            document.removeEventListener('keydown', handleEscKeydown);
         };
     }, []);
 
@@ -34,7 +40,6 @@ const Modal = ({ onOverlayClick, onEscKeydown, children }) => {
 
 Modal.propTypes = {
     onOverlayClick: PropTypes.func.isRequired,
-    onEscKeydown: PropTypes.func.isRequired,
     children: PropTypes.object.isRequired
 };
 

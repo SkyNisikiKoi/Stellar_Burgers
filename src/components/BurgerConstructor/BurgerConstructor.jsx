@@ -10,8 +10,11 @@ import { useContext } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context.js";
 import {api} from "../../utils/Api.js";
 
-function BurgerConstructor() {
 
+export function BurgerConstructor() {
+
+
+    
     const ingredients = useContext(BurgerIngredientsContext);
     const [modalData, setModalData] = useState(null);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
@@ -31,9 +34,9 @@ function BurgerConstructor() {
         setIsOrderDetailsOpened(false);
     };
 
-    const handleEscKeydown = (e) => {
-        e.key === "Escape" && onClose();
-    };
+    // const handleEscKeydown = (e) => {
+    //     e.key === "Escape" && onClose();
+    // };
 
     
 
@@ -49,13 +52,12 @@ function BurgerConstructor() {
 
         return (
 
-
             <section className="burger-ingredients">
 
                 {isOrderDetailsOpened &&
                     <Modal
                         onOverlayClick={onClose}
-                        onEscKeydown={handleEscKeydown}
+                        // onEscKeydown={handleEscKeydown}
                     >
                         <OrderDetails modalData={modalData}/>
                     </Modal>}
@@ -81,5 +83,3 @@ function BurgerConstructor() {
 
         );
     }
-
-export default BurgerConstructor;
