@@ -14,7 +14,6 @@ import { bindActionCreators } from 'redux';
 const {dispatch} = store;
 const {getListIngredients} = bindActionCreators(actions, dispatch);
 
-console.log(actions);
 
 export const App = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -35,6 +34,17 @@ export const App = () => {
             all: result.data
           }
           );
+          getListIngredients(
+            {
+              bun: result.data.filter(item => item.type === "bun"),
+              main: result.data.filter(item => item.type === "main"),
+              sauce: result.data.filter(item => item.type === "sauce"),
+              useBun: result.data.filter(item => item.type === "bun")[0],
+              ingredients: result.data.filter(item => item.type !== "bun"),
+              all: result.data
+            }
+          )
+          console.log(store);
         },
 
         (error) => {

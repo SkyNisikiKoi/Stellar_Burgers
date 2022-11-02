@@ -1,4 +1,3 @@
-import { getListIngredients, getListIngredientsConstructor, addIngredientView, removeIngredientView } from '../actions/actions.jsx';
 import { GET_LIST_INGREDIENTS, GET_LIST_INGREDIENTS_CONSTRUCTOR, ADD_INGREDIENT_VIEW, REMOVE_INGREDIENT_VIEW } from '../actions/actions.jsx';
 
 const initialStateIngredient = {
@@ -41,7 +40,7 @@ export const ingredientList = (state = initialStateIngredient, action) => {
         case GET_LIST_INGREDIENTS:
             return{
                 ...state,
-                profile:action.payload
+                data:action.payload
             }
             default:
                 return state;
@@ -53,7 +52,7 @@ export const listIngredientsConstructor = (state = initialStateIngredientСonstr
         case GET_LIST_INGREDIENTS_CONSTRUCTOR:
             return{
                 ...state,
-                profile:action.payload
+                data:action.payload
             }
             default:
                 return state;
@@ -65,7 +64,7 @@ export const ingredientView = (state = initialStateCurrentIngredient, action) =>
         case ADD_INGREDIENT_VIEW:
             return{
                 ...state,
-                profile:action.payload
+                data:action.payload
             }
             default:
                 return state;
@@ -77,7 +76,7 @@ export const deliteIngredientView = (state = initialStateOrder, action) => {
         case REMOVE_INGREDIENT_VIEW:
             return{
                 ...state,
-                profile:action.payload
+                data:action.payload
             }
             default:
                 return state;

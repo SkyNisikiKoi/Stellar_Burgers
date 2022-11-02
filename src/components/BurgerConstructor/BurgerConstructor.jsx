@@ -9,13 +9,12 @@ import OrderDetails from '../OrderDetails/OrderDetails.jsx';
 import { useContext } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context.js";
 import {api} from "../../utils/Api.js";
-
+import { useSelector } from 'react-redux';
 
 export function BurgerConstructor() {
 
-
-    
     const ingredients = useContext(BurgerIngredientsContext);
+    //const ingredients = useSelector(state => state.ingredients)
     const [modalData, setModalData] = useState(null);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 

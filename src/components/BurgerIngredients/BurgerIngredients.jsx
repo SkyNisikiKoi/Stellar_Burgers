@@ -5,9 +5,11 @@ import Modal from '../Modal/Modal.jsx'
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
 import { useContext } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
+import { useSelector } from 'react-redux';
 
 function BurgerIngredients() {
     const ingredients = useContext(BurgerIngredientsContext);
+    //const ingredients = useSelector(state => state.ingredients)
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
     const [id, setId] = useState(null);
     const [currentType, setCurrent] = useState('Булки');
@@ -38,7 +40,7 @@ function BurgerIngredients() {
             {isIngredientDetailsOpened &&
                 <Modal
                 onClose={onClose}
-                    onEscKeydown={handleEscKeydown}
+                onEscKeydown={handleEscKeydown}
                 >
                     <IngredientDetails item={ingredients.all.find(x => x._id == id)} />
                 </Modal>}

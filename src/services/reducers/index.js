@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
 import { ingredientList, listIngredientsConstructor, ingredientView, deliteIngredientView } from './reducers.jsx';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
+
 
 export const rootReducer = combineReducers({
     ingredientList,
