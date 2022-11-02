@@ -37,7 +37,7 @@ function BurgerIngredients() {
 
             {isIngredientDetailsOpened &&
                 <Modal
-                    onOverlayClick={onClose}
+                onClose={onClose}
                     onEscKeydown={handleEscKeydown}
                 >
                     <IngredientDetails item={ingredients.all.find(x => x._id == id)} />

@@ -8,7 +8,7 @@ function IngredientDetails(props) {
                 Детали ингредиента
             </p>
 
-            <img class="ingredient-details-image" src={props.item.image} alt="" />
+            <img className="ingredient-details-image" src={props.item.image} alt="" />
             <p className="text text_type_main-small ingredient-details-name">
                 {props.item.name}
             </p>

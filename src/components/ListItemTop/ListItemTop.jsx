@@ -8,11 +8,10 @@ export function ListItemTop(props) {
             <ConstructorElement
                 type="top"
                 isLocked={true}
-                text={props.name}
+                text={`${props.name}(верх)`}
                 price={props.price}
                 thumbnail={props.image}
             />
-
         </div>
     )
 }
@@ -20,3 +19,4 @@ export function ListItemTop(props) {
 ListItemTop.propTypes = {
     props: ingredientType.isRequired
 };
+

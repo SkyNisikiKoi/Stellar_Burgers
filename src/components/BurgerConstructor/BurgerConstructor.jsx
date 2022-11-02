@@ -56,14 +56,13 @@ export function BurgerConstructor() {
 
                 {isOrderDetailsOpened &&
                     <Modal
-                        onOverlayClick={onClose}
-                        // onEscKeydown={handleEscKeydown}
+                    onClose={onClose}
                     >
                         <OrderDetails modalData={modalData}/>
                     </Modal>}
 
                 <div className="burger-ingredients-order">
-                    {ListItemTop(ingredients.useBun)}
+                    {ListItemTop(ingredients.useBun)}  
                     <div className="scroll-container">
                         {ingredients.ingredients.map(item => ListItemElement(item))}
                     </div>
@@ -75,7 +74,6 @@ export function BurgerConstructor() {
                         {costСalculation()} <CurrencyIcon type="primary" />
                     </p>
                     <Button type="primary" size="medium" onClick={handleOrderClick} htmlType='button'>
-        
                         Оформить заказ
                     </Button>
                 </div>

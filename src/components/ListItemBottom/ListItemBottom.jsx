@@ -8,7 +8,7 @@ export function ListItemBottom(props) {
             <ConstructorElement
                 type="bottom"
                 isLocked={true}
-                text={props.name}
+                text={`${props.name}(низ)`}
                 price={props.price}
                 thumbnail={props.image}
             />

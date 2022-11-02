@@ -6,6 +6,15 @@ import {BurgerConstructor} from '../BurgerConstructor/BurgerConstructor.jsx';
 import { api } from '../../utils/Api.js';
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { Main } from '../Main/Main.jsx';
+import { store } from '../../services/reducers/index.js';
+import * as actions from '../../services/actions/actions.jsx';
+import { Provider } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+const {dispatch} = store;
+const {getListIngredients} = bindActionCreators(actions, dispatch);
+
+console.log(actions);
 
 export const App = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -47,6 +56,7 @@ export const App = () => {
 
     return (
       <React.StrictMode>
+        <Provider store={store}>
         <AppHeader />
         <Main>
           <BurgerIngredientsContext.Provider value={ingredients}>
@@ -56,6 +66,7 @@ export const App = () => {
 
           </BurgerIngredientsContext.Provider>
         </Main>
+        </Provider>
       </React.StrictMode>
     );
   }
