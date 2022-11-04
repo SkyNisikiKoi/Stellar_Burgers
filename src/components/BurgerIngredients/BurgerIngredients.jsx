@@ -3,15 +3,12 @@ import './BurgerIngredients.css';
 import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngredients.jsx';
 import Modal from '../Modal/Modal.jsx'
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
-import { useContext } from "react";
-import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { useSelector } from 'react-redux';
 
 function BurgerIngredients() {
-    const ingredients = useContext(BurgerIngredientsContext);
-    //const ingredients = useSelector(state => state.ingredients)
+    const ingredients = useSelector(state => state.ingredientList)
+    const ingredientView = useSelector(state => state.ingredientView)
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
-    const [id, setId] = useState(null);
     const [currentType, setCurrent] = useState('Булки');
 
     const onClose = () => {
@@ -42,7 +39,7 @@ function BurgerIngredients() {
                 onClose={onClose}
                 onEscKeydown={handleEscKeydown}
                 >
-                    <IngredientDetails item={ingredients.all.find(x => x._id == id)} />
+                    <IngredientDetails item={ingredientView} />
                 </Modal>}
 
             <div className="burgerm-menu">
@@ -54,7 +51,6 @@ function BurgerIngredients() {
                 <ChoiceIngredients currentType={currentType}
                     setCurrent={setCurrent}
                     setIsIngredientDetailsOpened={setIsIngredientDetailsOpened}
-                    setId={setId}
                     type={getCurrentType(ingredients)} />
             </div>
 

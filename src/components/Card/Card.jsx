@@ -2,11 +2,17 @@ import PropTypes from 'prop-types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import './Card.css';
 import { ingredientType } from '../../utils/types.js';
+import * as actions from '../../services/actions/actions.jsx';
+import { bindActionCreators } from 'redux';
+import { store } from '../../services/reducers/index.js';
 
-export function Card({ item, setIsIngredientDetailsOpened, setId }) {
+export function Card({ item, setIsIngredientDetailsOpened }) {
+
+    const {dispatch} = store;
+    const {addIngredientView} = bindActionCreators(actions, dispatch);
 
     function openCard() {
-        setId(item._id);
+        addIngredientView(item);
         setIsIngredientDetailsOpened(true)
     }
 

@@ -4,7 +4,6 @@ import AppHeader from '../AppHeader/AppHeader.jsx';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx';
 import {BurgerConstructor} from '../BurgerConstructor/BurgerConstructor.jsx';
 import { api } from '../../utils/Api.js';
-import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { Main } from '../Main/Main.jsx';
 import { store } from '../../services/reducers/index.js';
 import * as actions from '../../services/actions/actions.jsx';
@@ -16,7 +15,6 @@ const {getListIngredients} = bindActionCreators(actions, dispatch);
 
 
 export const App = () => {
-  const [ingredients, setIngredients] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
  
@@ -25,26 +23,7 @@ export const App = () => {
       .then(
         (result) => {
           setIsLoaded(true);
-          setIngredients({
-            bun: result.data.filter(item => item.type === "bun"),
-            main: result.data.filter(item => item.type === "main"),
-            sauce: result.data.filter(item => item.type === "sauce"),
-            useBun: result.data.filter(item => item.type === "bun")[0],
-            ingredients: result.data.filter(item => item.type !== "bun"),
-            all: result.data
-          }
-          );
-          getListIngredients(
-            {
-              bun: result.data.filter(item => item.type === "bun"),
-              main: result.data.filter(item => item.type === "main"),
-              sauce: result.data.filter(item => item.type === "sauce"),
-              useBun: result.data.filter(item => item.type === "bun")[0],
-              ingredients: result.data.filter(item => item.type !== "bun"),
-              all: result.data
-            }
-          )
-          console.log(store);
+          getListIngredients(result);
         },
 
         (error) => {
@@ -69,12 +48,12 @@ export const App = () => {
         <Provider store={store}>
         <AppHeader />
         <Main>
-          <BurgerIngredientsContext.Provider value={ingredients}>
+          {/* <BurgerIngredientsContext.Provider value={ingredients}> */}
 
             <BurgerIngredients />
             <BurgerConstructor  />
 
-          </BurgerIngredientsContext.Provider>
+          {/* </BurgerIngredientsContext.Provider> */}
         </Main>
         </Provider>
       </React.StrictMode>

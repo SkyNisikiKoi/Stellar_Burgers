@@ -1,10 +1,8 @@
-import React from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { FillOutCards } from '../../components/FillOutCards/FillOutCards.jsx';
 import './ChoiceIngredients.css';
 
-export function ChoiceIngredients({ currentType, setCurrent, setIsIngredientDetailsOpened, setId, type }) {
-
+export function ChoiceIngredients({ currentType, setCurrent, setIsIngredientDetailsOpened, type }) {
 
     return (
         <>
@@ -24,7 +22,7 @@ export function ChoiceIngredients({ currentType, setCurrent, setIsIngredientDeta
                     Булки
                 </p>
                 <div className="burgerm-menu-grid">
-                    <FillOutCards type={type} setIsIngredientDetailsOpened={setIsIngredientDetailsOpened} setId={setId} />
+                    <FillOutCards type={type} setIsIngredientDetailsOpened={setIsIngredientDetailsOpened} />
 
                 </div>
             </div>

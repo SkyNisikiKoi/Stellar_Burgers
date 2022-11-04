@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import './BurgerConstructor.css';
 import { ListItemTop } from '../ListItemTop/ListItemTop.jsx';
@@ -6,15 +6,12 @@ import { ListItemBottom } from '../ListItemBottom/ListItemBottom.jsx';
 import { ListItemElement } from '../ListItemElement/ListItemElement.jsx';
 import Modal from '../Modal/Modal.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
-import { useContext } from "react";
-import BurgerIngredientsContext from "../../context/burger-ingredients-context.js";
 import {api} from "../../utils/Api.js";
 import { useSelector } from 'react-redux';
 
 export function BurgerConstructor() {
 
-    const ingredients = useContext(BurgerIngredientsContext);
-    //const ingredients = useSelector(state => state.ingredients)
+    const ingredients = useSelector(state => state.ingredientList);
     const [modalData, setModalData] = useState(null);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 

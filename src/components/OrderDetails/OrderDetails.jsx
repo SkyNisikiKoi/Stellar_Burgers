@@ -2,7 +2,6 @@ import './OrderDetails.css';
 import done from "../../images/done.svg"
 import PropTypes from 'prop-types';
 
-
 function OrderDetails({modalData}) {
 
     return (
