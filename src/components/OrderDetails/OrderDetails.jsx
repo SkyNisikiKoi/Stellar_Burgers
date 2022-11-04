@@ -1,8 +1,11 @@
 import './OrderDetails.css';
 import done from "../../images/done.svg"
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-function OrderDetails({modalData}) {
+function OrderDetails() {
+
+    const modalData = useSelector(state => state.getOrderNumber);
 
     return (
         <div className="order-details">

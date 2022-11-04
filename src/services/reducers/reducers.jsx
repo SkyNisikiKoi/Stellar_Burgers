@@ -1,4 +1,11 @@
-import { GET_LIST_INGREDIENTS, GET_LIST_INGREDIENTS_CONSTRUCTOR, ADD_INGREDIENT_VIEW, REMOVE_INGREDIENT_VIEW } from '../actions/actions.jsx';
+import { 
+    GET_LIST_INGREDIENTS, 
+    GET_LIST_INGREDIENTS_CONSTRUCTOR, 
+    ADD_INGREDIENT_VIEW, 
+    REMOVE_INGREDIENT_VIEW, 
+    UPDATE_ORDER_NUMBER 
+        } 
+from '../actions/actions.jsx';
 
 const initialStateIngredient = {
     data: []
@@ -14,8 +21,10 @@ const initialStateCurrentIngredient = {
 }
 
 const initialStateOrder = {
-    number: null,
+    data: null
 }
+
+
 
 export const ingredientList = (state = initialStateIngredient, action) => {
     switch (action.type) {
@@ -53,17 +62,20 @@ export const ingredientView = (state = initialStateCurrentIngredient, action) =>
             return {
                 ...action.payload
             }
+        case REMOVE_INGREDIENT_VIEW:
+            return {
+
+            }
         default:
             return state;
     }
 }
 
-export const deliteIngredientView = (state = initialStateOrder, action) => {
+export const getOrderNumber = (state = initialStateOrder, action) => {
     switch (action.type) {
-        case REMOVE_INGREDIENT_VIEW:
+        case UPDATE_ORDER_NUMBER:
             return {
-                ...state,
-                data: action.payload
+                ...action.payload
             }
         default:
             return state;

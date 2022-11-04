@@ -8,17 +8,23 @@ import Modal from '../Modal/Modal.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
 import {api} from "../../utils/Api.js";
 import { useSelector } from 'react-redux';
+import * as actions from '../../services/actions/actions.jsx';
+import { bindActionCreators } from 'redux';
+import { store } from '../../services/reducers/index.js';
 
 export function BurgerConstructor() {
 
     const ingredients = useSelector(state => state.ingredientList);
-    const [modalData, setModalData] = useState(null);
+    //const [modalData, setModalData] = useState(null);
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
+
+    const {dispatch} = store;
+    const {updateOrderNumber} = bindActionCreators(actions, dispatch);
 
     const handleOrderClick = () => {
         api.saveOrder(ingredients)
           .then(data => {
-            setModalData(data);
+            updateOrderNumber(data);
             setIsOrderDetailsOpened(true);
           })
           .catch((err) => {
@@ -29,12 +35,6 @@ export function BurgerConstructor() {
     const onClose = () => {
         setIsOrderDetailsOpened(false);
     };
-
-    // const handleEscKeydown = (e) => {
-    //     e.key === "Escape" && onClose();
-    // };
-
-    
 
     function costСalculation() {
         let cost = ingredients.useBun.price;
@@ -54,7 +54,7 @@ export function BurgerConstructor() {
                     <Modal
                     onClose={onClose}
                     >
-                        <OrderDetails modalData={modalData}/>
+                        <OrderDetails />
                     </Modal>}
 
                 <div className="burger-ingredients-order">

@@ -4,16 +4,22 @@ import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngr
 import Modal from '../Modal/Modal.jsx'
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx'
 import { useSelector } from 'react-redux';
+import * as actions from '../../services/actions/actions.jsx';
+import { bindActionCreators } from 'redux';
+import { store } from '../../services/reducers/index.js';
 
 function BurgerIngredients() {
-    const ingredients = useSelector(state => state.ingredientList)
-    const ingredientView = useSelector(state => state.ingredientView)
+    const ingredients = useSelector(state => state.ingredientList);
+    const ingredientView = useSelector(state => state.ingredientView);
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
     const [currentType, setCurrent] = useState('Булки');
 
+    const {dispatch} = store;
+    const {removeIngredientView} = bindActionCreators(actions, dispatch);
+
     const onClose = () => {
         setIsIngredientDetailsOpened(false);
-
+        removeIngredientView();
     };
 
     const handleEscKeydown = (e) => {

@@ -48,12 +48,8 @@ export const App = () => {
         <Provider store={store}>
         <AppHeader />
         <Main>
-          {/* <BurgerIngredientsContext.Provider value={ingredients}> */}
-
             <BurgerIngredients />
             <BurgerConstructor  />
-
-          {/* </BurgerIngredientsContext.Provider> */}
         </Main>
         </Provider>
       </React.StrictMode>
