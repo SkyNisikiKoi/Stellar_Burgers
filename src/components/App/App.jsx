@@ -9,6 +9,9 @@ import { store } from '../../services/reducers/index.js';
 import * as actions from '../../services/actions/actions.jsx';
 import { Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 
 const {dispatch} = store;
 const {getListIngredients} = bindActionCreators(actions, dispatch);
@@ -48,8 +51,11 @@ export const App = () => {
         <Provider store={store}>
         <AppHeader />
         <Main>
+              <DndProvider backend={HTML5Backend}>
             <BurgerIngredients />
+            
             <BurgerConstructor  />
+              </DndProvider>
         </Main>
         </Provider>
       </React.StrictMode>

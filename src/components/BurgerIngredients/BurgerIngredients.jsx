@@ -26,15 +26,15 @@ function BurgerIngredients() {
         e.key === "Escape" && onClose();
     };
 
-    function getCurrentType(ingredients) {
-        if (currentType === 'Булки') {
-            return ingredients.bun
-        } else if (currentType === 'Соусы') {
-            return ingredients.sauce
-        } else if (currentType === 'Начинки') {
-            return ingredients.main
-        }
-    }
+    // function getCurrentType(ingredients) {
+    //     if (currentType === 'Булки') {
+    //         return ingredients.bun
+    //     } else if (currentType === 'Соусы') {
+    //         return ingredients.sauce
+    //     } else if (currentType === 'Начинки') {
+    //         return ingredients.main
+    //     }
+    // }
 
     return (
 
@@ -54,10 +54,13 @@ function BurgerIngredients() {
                     Соберите бургер
                 </p>
 
-                <ChoiceIngredients currentType={currentType}
+                <ChoiceIngredients 
+                    currentType={currentType}
                     setCurrent={setCurrent}
                     setIsIngredientDetailsOpened={setIsIngredientDetailsOpened}
-                    type={getCurrentType(ingredients)} />
+                    ingredients={ingredients}
+                     />
+
             </div>
 
         </section>

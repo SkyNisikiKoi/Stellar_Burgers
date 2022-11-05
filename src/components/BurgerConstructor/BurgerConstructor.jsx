@@ -15,7 +15,7 @@ import { store } from '../../services/reducers/index.js';
 export function BurgerConstructor() {
 
     const ingredients = useSelector(state => state.ingredientList);
-    //const [modalData, setModalData] = useState(null);
+    
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
     const {dispatch} = store;
