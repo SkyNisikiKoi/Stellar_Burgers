@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
 import './BurgerIngredients.css';
 import { ChoiceIngredients } from '../../components/ChoiceIngredients/ChoiceIngredients.jsx';
 import Modal from '../Modal/Modal.jsx'
@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux';
 import * as actions from '../../services/actions/actions.jsx';
 import { bindActionCreators } from 'redux';
 import { store } from '../../services/reducers/index.js';
+import { useDrag } from "react-dnd";
 
-function BurgerIngredients() {
+const BurgerIngredients = () => {
     const ingredients = useSelector(state => state.ingredientList);
     const ingredientView = useSelector(state => state.ingredientView);
     const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);

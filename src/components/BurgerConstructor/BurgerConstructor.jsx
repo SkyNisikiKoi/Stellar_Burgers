@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { React, useState, useCallback } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import './BurgerConstructor.css';
 import { ListItemTop } from '../ListItemTop/ListItemTop.jsx';
@@ -11,15 +11,20 @@ import { useSelector } from 'react-redux';
 import * as actions from '../../services/actions/actions.jsx';
 import { bindActionCreators } from 'redux';
 import { store } from '../../services/reducers/index.js';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { useDrop } from "react-dnd";
+import {ingridientType} from "../Card/Card.jsx";
 
-export function BurgerConstructor() {
+export function BurgerConstructor({children, onDropHandler}) {
 
-    const ingredients = useSelector(state => state.ingredientList);
+    const ingredientsConstructor = useSelector(state => state.listIngredientsConstructor);
     
     const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
     const {dispatch} = store;
-    const {updateOrderNumber} = bindActionCreators(actions, dispatch);
+    const {updateOrderNumber, addIngredientConstructor} = bindActionCreators(actions, dispatch);
+
 
     const handleOrderClick = () => {
         api.saveOrder(ingredients)
@@ -36,10 +41,27 @@ export function BurgerConstructor() {
         setIsOrderDetailsOpened(false);
     };
 
-    function costСalculation() {
-        let cost = ingredients.useBun.price;
+    const [{hover}, dropTarget] = useDrop({
+        accept: ingridientType,
+        drop(item) {
+            handleDrop(item);
+        },
+        collect: monitor => ({
+            hover: monitor.isOver()
+        })
+    });
 
-        let costs = ingredients.ingredients.reduce((previousValue, currentValue) => {
+    const handleDrop = useCallback((item) => {
+        console.log(item)
+        const card = item.type !== 'bun' ? {...item, dragId: ingredientsConstructor.ingredients.length, isDragging: false} : {...item};
+     addIngredientConstructor(card);
+    }, [dispatch, ingredientsConstructor]);
+
+
+    function costСalculation() {
+        let cost = ingredientsConstructor.bun.price;
+
+        let costs = ingredientsConstructor.ingredients.reduce((previousValue, currentValue) => {
             return previousValue + currentValue.price
         }, 0)
 
@@ -48,7 +70,7 @@ export function BurgerConstructor() {
 
         return (
 
-            <section className="burger-ingredients">
+            <section className="burger-ingredients" ref={dropTarget}>
 
                 {isOrderDetailsOpened &&
                     <Modal
@@ -58,11 +80,11 @@ export function BurgerConstructor() {
                     </Modal>}
 
                 <div className="burger-ingredients-order">
-                    {ListItemTop(ingredients.useBun)}  
+                    {ListItemTop(ingredientsConstructor.bun)}  
                     <div className="scroll-container">
-                        {ingredients.ingredients.map(item => ListItemElement(item))}
+                        {ingredientsConstructor.ingredients.map(item => ListItemElement(item))}
                     </div>
-                    {ListItemBottom(ingredients.useBun)}
+                    {ListItemBottom(ingredientsConstructor.bun)}
                 </div>
                 <div className="cost-container">
 

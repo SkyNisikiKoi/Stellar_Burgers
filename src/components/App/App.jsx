@@ -13,14 +13,15 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 
-const {dispatch} = store;
-const {getListIngredients} = bindActionCreators(actions, dispatch);
+
 
 
 export const App = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
- 
+  const {dispatch} = store;
+  const {getListIngredients} = bindActionCreators(actions, dispatch);
+  
   useEffect(() => {
     api.loadCards()
       .then(
@@ -54,7 +55,7 @@ export const App = () => {
               <DndProvider backend={HTML5Backend}>
             <BurgerIngredients />
             
-            <BurgerConstructor  />
+            <BurgerConstructor />
               </DndProvider>
         </Main>
         </Provider>
@@ -62,7 +63,3 @@ export const App = () => {
     );
   }
 }
-
-
-
-

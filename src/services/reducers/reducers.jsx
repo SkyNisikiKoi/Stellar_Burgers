@@ -1,18 +1,23 @@
-import { 
-    GET_LIST_INGREDIENTS, 
-    GET_LIST_INGREDIENTS_CONSTRUCTOR, 
-    ADD_INGREDIENT_VIEW, 
-    REMOVE_INGREDIENT_VIEW, 
-    UPDATE_ORDER_NUMBER 
-        } 
-from '../actions/actions.jsx';
+import {
+    GET_LIST_INGREDIENTS,
+    //GET_LIST_INGREDIENTS_CONSTRUCTOR, 
+    ADD_INGREDIENT_VIEW,
+    REMOVE_INGREDIENT_VIEW,
+    UPDATE_ORDER_NUMBER,
+    ADD_INGREDIENT_CONSTRUCTOR,
+    ADD_ID_INGREDIENT_CONSTRUCTOR,
+    REMOVE_INGREDIENT_CONSTRUCTOR,
+
+}
+    from '../actions/actions.jsx';
 
 const initialStateIngredient = {
     data: []
 }
 
 const initialStateIngredientСonstructor = {
-    data: []
+    bun: {},
+    ingredients: []
 
 }
 
@@ -24,6 +29,9 @@ const initialStateOrder = {
     data: null
 }
 
+const initialStateIngredientСonstructorId = {
+    data: []
+}
 
 
 export const ingredientList = (state = initialStateIngredient, action) => {
@@ -46,11 +54,38 @@ export const ingredientList = (state = initialStateIngredient, action) => {
 
 export const listIngredientsConstructor = (state = initialStateIngredientСonstructor, action) => {
     switch (action.type) {
-        case GET_LIST_INGREDIENTS_CONSTRUCTOR:
-            return {
-                ...state,
-                data: [...data, action.payload]
+        case ADD_INGREDIENT_CONSTRUCTOR:
+            {
+                console.log(action)
+                if (action.payload.type === 'bun') {
+                    return {
+                        ...state,
+                        bun: action.payload
+                    }
+                } else {
+                    
+                    let item = action.payload;
+
+                    return {
+                        ...state,
+                        ingredients: [...state.ingredients, item]
+                    }
+                }
             }
+
+        case REMOVE_INGREDIENT_CONSTRUCTOR:
+            {  
+                let elemenrs = state.ingredients;
+                let index = action.payload.index;
+                const result = elemenrs.filter(item => item.index !== index)
+
+                return {
+                    ...state,
+                    ingredients: result
+                }
+            }
+           
+
         default:
             return state;
     }
@@ -81,3 +116,16 @@ export const getOrderNumber = (state = initialStateOrder, action) => {
             return state;
     }
 }
+
+export const listIngredientsConstructorId = (state = initialStateIngredientСonstructorId, action) => {
+    switch (action.type) {
+        case ADD_ID_INGREDIENT_CONSTRUCTOR:
+            return {
+                ...action.payload
+            }
+
+        default:
+            return state;
+    }
+}
+
