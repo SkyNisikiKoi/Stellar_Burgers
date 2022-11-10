@@ -1,0 +1,64 @@
+.ingredient-details {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 720px;
+  height: 538px;
+  background: #1c1c21;
+}
+
+.ingredient-details-caption {
+  margin: 40px 0 0 40px;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  color: #f2f2f3;
+}
+.ingredient-details-image {
+  align-self: center;
+  margin-bottom: 16px;
+  width: 520px;
+  height: 240px;
+  border: none;
+  border-color: #1c1c21;
+  border-width: 0;
+  background: #1c1c21;
+  background-size: cover;
+}
+
+.ingredient-details-name {
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: #f2f2f3;
+}
+
+.ingredient-details-grid {
+  display: grid;
+  width: 516px;
+  height: 56px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 8px;
+  align-self: center;
+}
+
+.ingredient-details-cell {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #8585ad;
+}
+
+.ingredient-details-number {
+  font-family: "Iceland";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
+  text-align: center;
+  color: #8585ad;
+}
