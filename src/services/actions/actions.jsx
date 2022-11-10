@@ -7,6 +7,7 @@ export const UPDATE_ORDER_NUMBER = 'UPDATE_ORDER_NUMBER';
 export const ADD_INGREDIENT_CONSTRUCTOR = 'ADD_INGREDIENT_CONSTRUCTOR';
 export const ADD_ID_INGREDIENT_CONSTRUCTOR = 'ADD_ID_INGREDIENT_CONSTRUCTOR';
 export const REMOVE_INGREDIENT_CONSTRUCTOR = 'REMOVE_INGREDIENT_CONSTRUCTOR';
+export const CHANGE_INGREDIENT_CONSTRUCTOR = 'CHANGE_INGREDIENT_CONSTRUCTOR';
 
 export const getListIngredients =  (payload) => {
     return {
@@ -60,6 +61,13 @@ export const addIdIngredientConstructor =  (payload) => {
 export const removeIdIngredientConstructor =  (payload) => {
     return {
         type: REMOVE_INGREDIENT_CONSTRUCTOR,
+        payload
+    }
+}
+
+export const changeIdIngredientConstructor =  (payload) => {
+    return {
+        type: CHANGE_INGREDIENT_CONSTRUCTOR,
         payload
     }
 }

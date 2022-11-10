@@ -7,6 +7,7 @@ import {
     ADD_INGREDIENT_CONSTRUCTOR,
     ADD_ID_INGREDIENT_CONSTRUCTOR,
     REMOVE_INGREDIENT_CONSTRUCTOR,
+    CHANGE_INGREDIENT_CONSTRUCTOR
 
 }
     from '../actions/actions.jsx';
@@ -63,7 +64,7 @@ export const listIngredientsConstructor = (state = initialStateIngredientСonstr
                         bun: action.payload
                     }
                 } else {
-                    
+
                     let item = action.payload;
 
                     return {
@@ -74,7 +75,7 @@ export const listIngredientsConstructor = (state = initialStateIngredientСonstr
             }
 
         case REMOVE_INGREDIENT_CONSTRUCTOR:
-            {  
+            {
                 let elemenrs = state.ingredients;
                 let index = action.payload.index;
                 const result = elemenrs.filter(item => item.index !== index)
@@ -84,7 +85,24 @@ export const listIngredientsConstructor = (state = initialStateIngredientСonstr
                     ingredients: result
                 }
             }
-           
+
+        case CHANGE_INGREDIENT_CONSTRUCTOR:
+            {
+                const dragItem = state.ingredients[action.payload.dragIndex]
+                const hoverItem = state.ingredients[action.payload.hoverIndex]
+          
+                const updatedIngredients = [...state.ingredients]
+                
+                updatedIngredients[action.payload.dragIndex] = hoverItem
+                updatedIngredients[action.payload.hoverIndex] = dragItem
+            
+
+                return {
+                    ...state,
+                    ingredients: updatedIngredients
+                }
+            }
+
 
         default:
             return state;

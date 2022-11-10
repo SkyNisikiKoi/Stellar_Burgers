@@ -28,7 +28,6 @@ export function Card({ item, setIsIngredientDetailsOpened, moveCard }) {
                 return;
             }
 
-            
             const dragIndex = item.index;
             const hoverIndex = index;
             const dragId = item.dragId;

@@ -1,4 +1,4 @@
-import { React, useState, useCallback } from 'react';
+import { React, useState, useCallback, useRef } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import './BurgerConstructor.css';
 import { ListItemTop } from '../ListItemTop/ListItemTop.jsx';
@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { store } from '../../services/reducers/index.js';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useDrop } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 import {ingridientType} from "../Card/Card.jsx";
 
 export function BurgerConstructor({children, onDropHandler}) {
@@ -50,11 +50,12 @@ export function BurgerConstructor({children, onDropHandler}) {
             hover: monitor.isOver()
         })
     });
-
+    
     const handleDrop = useCallback((item) => {
-        console.log(item)
+        
         const card = item.type !== 'bun' ? {...item, dragId: ingredientsConstructor.ingredients.length, isDragging: false} : {...item};
      addIngredientConstructor(card);
+     console.log(card)
     }, [dispatch, ingredientsConstructor]);
 
 
@@ -82,7 +83,7 @@ export function BurgerConstructor({children, onDropHandler}) {
                 <div className="burger-ingredients-order">
                     {ListItemTop(ingredientsConstructor.bun)}  
                     <div className="scroll-container">
-                        {ingredientsConstructor.ingredients.map(item => ListItemElement(item))}
+                        {ingredientsConstructor.ingredients.map((item, index) => ListItemElement({item, index}))}
                     </div>
                     {ListItemBottom(ingredientsConstructor.bun)}
                 </div>
